@@ -1,0 +1,424 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<mapper namespace='com.changshun.countsystem.dao.TGuangzhoumoneyMapper' >
+  <resultMap id='BaseResultMap' type='com.changshun.countsystem.pojo.TGuangzhoumoney' >
+    <result column='id' property='id' jdbcType='BIGINT' />
+    <result column='workerid' property='workerid' jdbcType='VARCHAR' />
+    <result column='name' property='name' jdbcType='VARCHAR' />
+    <result column='department' property='department' jdbcType='VARCHAR' />
+    <result column='days' property='days' jdbcType='DECIMAL' />
+    <result column='jiabandays' property='jiabandays' jdbcType='DECIMAL' />
+    <result column='jishu' property='jishu' jdbcType='DECIMAL' />
+    <result column='yingdea' property='yingdea' jdbcType='DECIMAL' />
+    <result column='yingdeb' property='yingdeb' jdbcType='DECIMAL' />
+    <result column='gangweimoney' property='gangweimoney' jdbcType='DECIMAL' />
+    <result column='jixaiomoneyc' property='jixaiomoneyc' jdbcType='DECIMAL' />
+    <result column='monthabc' property='monthabc' jdbcType='DECIMAL' />
+    <result column='quanqinjishu' property='quanqinjishu' jdbcType='DECIMAL' />
+    <result column='quanqinyingde' property='quanqinyingde' jdbcType='DECIMAL' />
+    <result column='zhusujishu' property='zhusujishu' jdbcType='DECIMAL' />
+    <result column='zhusuyingde' property='zhusuyingde' jdbcType='DECIMAL' />
+    <result column='huoshidunshu' property='huoshidunshu' jdbcType='DECIMAL' />
+    <result column='huoshiyingde' property='huoshiyingde' jdbcType='DECIMAL' />
+    <result column='gaowenyingfa' property='gaowenyingfa' jdbcType='DECIMAL' />
+    <result column='gaowenshifa' property='gaowenshifa' jdbcType='DECIMAL' />
+    <result column='jiangfa' property='jiangfa' jdbcType='DECIMAL' />
+    <result column='total' property='total' jdbcType='DECIMAL' />
+    <result column='time' property='time' jdbcType='TIMESTAMP' />
+    <result column='bumen' property='bumen' jdbcType='VARCHAR' />
+</resultMap>
+<sql id='sf'>
+    <where>
+      <if test='id != null'> and id= #{id}</if>
+      <if test='workerid != null'> and workerid= #{workerid}</if>
+      <if test='name != null'> and name= #{name}</if>
+      <if test='department != null'> and department= #{department}</if>
+      <if test='days != null'> and days= #{days}</if>
+      <if test='jiabandays != null'> and jiabandays= #{jiabandays}</if>
+      <if test='jishu != null'> and jishu= #{jishu}</if>
+      <if test='yingdea != null'> and yingdea= #{yingdea}</if>
+      <if test='yingdeb != null'> and yingdeb= #{yingdeb}</if>
+      <if test='gangweimoney != null'> and gangweimoney= #{gangweimoney}</if>
+      <if test='jixaiomoneyc != null'> and jixaiomoneyc= #{jixaiomoneyc}</if>
+      <if test='monthabc != null'> and monthabc= #{monthabc}</if>
+      <if test='quanqinjishu != null'> and quanqinjishu= #{quanqinjishu}</if>
+      <if test='quanqinyingde != null'> and quanqinyingde= #{quanqinyingde}</if>
+      <if test='zhusujishu != null'> and zhusujishu= #{zhusujishu}</if>
+      <if test='zhusuyingde != null'> and zhusuyingde= #{zhusuyingde}</if>
+      <if test='huoshidunshu != null'> and huoshidunshu= #{huoshidunshu}</if>
+      <if test='huoshiyingde != null'> and huoshiyingde= #{huoshiyingde}</if>
+      <if test='gaowenyingfa != null'> and gaowenyingfa= #{gaowenyingfa}</if>
+      <if test='gaowenshifa != null'> and gaowenshifa= #{gaowenshifa}</if>
+      <if test='jiangfa != null'> and jiangfa= #{jiangfa}</if>
+      <if test='total != null'> and total= #{total}</if>
+      <if test='time != null'> and time= #{time}</if>
+      <if test='bumen != null'> and bumen= #{bumen}</if>
+<if test='create_time_begin != null and create_time_end != null' > and `time` BETWEEN #{create_time_begin} AND #{create_time_end}</if>
+
+</where>    </sql>
+
+<select id='getOne' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TGuangzhoumoney' >
+    select *
+    from  `t_guangzhoumoney`
+        <include refid='sf' />
+  </select>
+<select id='getList' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TGuangzhoumoney' >
+    select *
+    from `t_guangzhoumoney`
+    <include refid='sf' />
+  </select>
+<delete id='delete' parameterType='com.changshun.countsystem.pojo.TGuangzhoumoney' >
+    delete from `t_guangzhoumoney`
+    <include refid='sf' />
+  </delete>
+<select id='getCount' parameterType='com.changshun.countsystem.pojo.TGuangzhoumoney' resultType='int'>
+		select count(*) from `t_guangzhoumoney` <include refid='sf' />
+	</select>
+<select id='getLike' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TGuangzhoumoney' >
+    select *
+    from `t_guangzhoumoney`<where>
+      <if test='id != null'> and id like concat('%', #{id},'%')</if>
+      <if test='workerid != null'> and workerid like concat('%', #{workerid},'%')</if>
+      <if test='name != null'> and name like concat('%', #{name},'%')</if>
+      <if test='department != null'> and department like concat('%', #{department},'%')</if>
+      <if test='days != null'> and days like concat('%', #{days},'%')</if>
+      <if test='jiabandays != null'> and jiabandays like concat('%', #{jiabandays},'%')</if>
+      <if test='jishu != null'> and jishu like concat('%', #{jishu},'%')</if>
+      <if test='yingdea != null'> and yingdea like concat('%', #{yingdea},'%')</if>
+      <if test='yingdeb != null'> and yingdeb like concat('%', #{yingdeb},'%')</if>
+      <if test='gangweimoney != null'> and gangweimoney like concat('%', #{gangweimoney},'%')</if>
+      <if test='jixaiomoneyc != null'> and jixaiomoneyc like concat('%', #{jixaiomoneyc},'%')</if>
+      <if test='monthabc != null'> and monthabc like concat('%', #{monthabc},'%')</if>
+      <if test='quanqinjishu != null'> and quanqinjishu like concat('%', #{quanqinjishu},'%')</if>
+      <if test='quanqinyingde != null'> and quanqinyingde like concat('%', #{quanqinyingde},'%')</if>
+      <if test='zhusujishu != null'> and zhusujishu like concat('%', #{zhusujishu},'%')</if>
+      <if test='zhusuyingde != null'> and zhusuyingde like concat('%', #{zhusuyingde},'%')</if>
+      <if test='huoshidunshu != null'> and huoshidunshu like concat('%', #{huoshidunshu},'%')</if>
+      <if test='huoshiyingde != null'> and huoshiyingde like concat('%', #{huoshiyingde},'%')</if>
+      <if test='gaowenyingfa != null'> and gaowenyingfa like concat('%', #{gaowenyingfa},'%')</if>
+      <if test='gaowenshifa != null'> and gaowenshifa like concat('%', #{gaowenshifa},'%')</if>
+      <if test='jiangfa != null'> and jiangfa like concat('%', #{jiangfa},'%')</if>
+      <if test='total != null'> and total like concat('%', #{total},'%')</if>
+      <if test='time != null'> and time like concat('%', #{time},'%')</if>
+      <if test='bumen != null'> and bumen like concat('%', #{bumen},'%')</if>
+  </where></select>
+
+<insert id='insert' parameterType='com.changshun.countsystem.pojo.TGuangzhoumoney' >
+    insert into `t_guangzhoumoney`
+    <trim prefix='(' suffix=')' suffixOverrides=',' >
+      <if test='id != null' >
+        id,
+</if>
+      <if test='workerid != null' >
+        workerid,
+</if>
+      <if test='name != null' >
+        name,
+</if>
+      <if test='department != null' >
+        department,
+</if>
+      <if test='days != null' >
+        days,
+</if>
+      <if test='jiabandays != null' >
+        jiabandays,
+</if>
+      <if test='jishu != null' >
+        jishu,
+</if>
+      <if test='yingdea != null' >
+        yingdea,
+</if>
+      <if test='yingdeb != null' >
+        yingdeb,
+</if>
+      <if test='gangweimoney != null' >
+        gangweimoney,
+</if>
+      <if test='jixaiomoneyc != null' >
+        jixaiomoneyc,
+</if>
+      <if test='monthabc != null' >
+        monthabc,
+</if>
+      <if test='quanqinjishu != null' >
+        quanqinjishu,
+</if>
+      <if test='quanqinyingde != null' >
+        quanqinyingde,
+</if>
+      <if test='zhusujishu != null' >
+        zhusujishu,
+</if>
+      <if test='zhusuyingde != null' >
+        zhusuyingde,
+</if>
+      <if test='huoshidunshu != null' >
+        huoshidunshu,
+</if>
+      <if test='huoshiyingde != null' >
+        huoshiyingde,
+</if>
+      <if test='gaowenyingfa != null' >
+        gaowenyingfa,
+</if>
+      <if test='gaowenshifa != null' >
+        gaowenshifa,
+</if>
+      <if test='jiangfa != null' >
+        jiangfa,
+</if>
+      <if test='total != null' >
+        total,
+</if>
+      <if test='time != null' >
+        time,
+</if>
+      <if test='bumen != null' >
+        bumen,
+</if>
+
+ </trim>
+    <trim prefix='values (' suffix=')' suffixOverrides=',' >
+ <if test='id != null' >
+        #{id ,jdbcType=BIGINT},
+      </if>
+ <if test='workerid != null' >
+        #{workerid ,jdbcType=VARCHAR},
+      </if>
+ <if test='name != null' >
+        #{name ,jdbcType=VARCHAR},
+      </if>
+ <if test='department != null' >
+        #{department ,jdbcType=VARCHAR},
+      </if>
+ <if test='days != null' >
+        #{days ,jdbcType=DECIMAL},
+      </if>
+ <if test='jiabandays != null' >
+        #{jiabandays ,jdbcType=DECIMAL},
+      </if>
+ <if test='jishu != null' >
+        #{jishu ,jdbcType=DECIMAL},
+      </if>
+ <if test='yingdea != null' >
+        #{yingdea ,jdbcType=DECIMAL},
+      </if>
+ <if test='yingdeb != null' >
+        #{yingdeb ,jdbcType=DECIMAL},
+      </if>
+ <if test='gangweimoney != null' >
+        #{gangweimoney ,jdbcType=DECIMAL},
+      </if>
+ <if test='jixaiomoneyc != null' >
+        #{jixaiomoneyc ,jdbcType=DECIMAL},
+      </if>
+ <if test='monthabc != null' >
+        #{monthabc ,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqinjishu != null' >
+        #{quanqinjishu ,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqinyingde != null' >
+        #{quanqinyingde ,jdbcType=DECIMAL},
+      </if>
+ <if test='zhusujishu != null' >
+        #{zhusujishu ,jdbcType=DECIMAL},
+      </if>
+ <if test='zhusuyingde != null' >
+        #{zhusuyingde ,jdbcType=DECIMAL},
+      </if>
+ <if test='huoshidunshu != null' >
+        #{huoshidunshu ,jdbcType=DECIMAL},
+      </if>
+ <if test='huoshiyingde != null' >
+        #{huoshiyingde ,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowenyingfa != null' >
+        #{gaowenyingfa ,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowenshifa != null' >
+        #{gaowenshifa ,jdbcType=DECIMAL},
+      </if>
+ <if test='jiangfa != null' >
+        #{jiangfa ,jdbcType=DECIMAL},
+      </if>
+ <if test='total != null' >
+        #{total ,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        #{time ,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        #{bumen ,jdbcType=VARCHAR},
+      </if>
+</trim>
+  </insert>
+  <update id='update' parameterType='com.changshun.countsystem.pojo.TGuangzhoumoney' >
+    update `t_guangzhoumoney`
+    <set >
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='workerid != null' >
+        workerid = #{workerid,jdbcType=VARCHAR},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='department != null' >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+ <if test='days != null' >
+        days = #{days,jdbcType=DECIMAL},
+      </if>
+ <if test='jiabandays != null' >
+        jiabandays = #{jiabandays,jdbcType=DECIMAL},
+      </if>
+ <if test='jishu != null' >
+        jishu = #{jishu,jdbcType=DECIMAL},
+      </if>
+ <if test='yingdea != null' >
+        yingdea = #{yingdea,jdbcType=DECIMAL},
+      </if>
+ <if test='yingdeb != null' >
+        yingdeb = #{yingdeb,jdbcType=DECIMAL},
+      </if>
+ <if test='gangweimoney != null' >
+        gangweimoney = #{gangweimoney,jdbcType=DECIMAL},
+      </if>
+ <if test='jixaiomoneyc != null' >
+        jixaiomoneyc = #{jixaiomoneyc,jdbcType=DECIMAL},
+      </if>
+ <if test='monthabc != null' >
+        monthabc = #{monthabc,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqinjishu != null' >
+        quanqinjishu = #{quanqinjishu,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqinyingde != null' >
+        quanqinyingde = #{quanqinyingde,jdbcType=DECIMAL},
+      </if>
+ <if test='zhusujishu != null' >
+        zhusujishu = #{zhusujishu,jdbcType=DECIMAL},
+      </if>
+ <if test='zhusuyingde != null' >
+        zhusuyingde = #{zhusuyingde,jdbcType=DECIMAL},
+      </if>
+ <if test='huoshidunshu != null' >
+        huoshidunshu = #{huoshidunshu,jdbcType=DECIMAL},
+      </if>
+ <if test='huoshiyingde != null' >
+        huoshiyingde = #{huoshiyingde,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowenyingfa != null' >
+        gaowenyingfa = #{gaowenyingfa,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowenshifa != null' >
+        gaowenshifa = #{gaowenshifa,jdbcType=DECIMAL},
+      </if>
+ <if test='jiangfa != null' >
+        jiangfa = #{jiangfa,jdbcType=DECIMAL},
+      </if>
+ <if test='total != null' >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<delete id='deleteAll'>
+		DELETE FROM `t_guangzhoumoney` WHERE id IN
+		<foreach collection='ids' item='id' open='(' separator=',' close=')'>
+			#{ id }
+		</foreach>
+	</delete>
+  <update id='updateAll'   parameterType='java.util.List'>
+   <foreach collection='T' item='t' index='index' open='' close='' separator=';'> 
+   update `t_guangzhoumoney`
+
+ <set >
+
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='workerid != null' >
+        workerid = #{workerid,jdbcType=VARCHAR},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='department != null' >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+ <if test='days != null' >
+        days = #{days,jdbcType=DECIMAL},
+      </if>
+ <if test='jiabandays != null' >
+        jiabandays = #{jiabandays,jdbcType=DECIMAL},
+      </if>
+ <if test='jishu != null' >
+        jishu = #{jishu,jdbcType=DECIMAL},
+      </if>
+ <if test='yingdea != null' >
+        yingdea = #{yingdea,jdbcType=DECIMAL},
+      </if>
+ <if test='yingdeb != null' >
+        yingdeb = #{yingdeb,jdbcType=DECIMAL},
+      </if>
+ <if test='gangweimoney != null' >
+        gangweimoney = #{gangweimoney,jdbcType=DECIMAL},
+      </if>
+ <if test='jixaiomoneyc != null' >
+        jixaiomoneyc = #{jixaiomoneyc,jdbcType=DECIMAL},
+      </if>
+ <if test='monthabc != null' >
+        monthabc = #{monthabc,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqinjishu != null' >
+        quanqinjishu = #{quanqinjishu,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqinyingde != null' >
+        quanqinyingde = #{quanqinyingde,jdbcType=DECIMAL},
+      </if>
+ <if test='zhusujishu != null' >
+        zhusujishu = #{zhusujishu,jdbcType=DECIMAL},
+      </if>
+ <if test='zhusuyingde != null' >
+        zhusuyingde = #{zhusuyingde,jdbcType=DECIMAL},
+      </if>
+ <if test='huoshidunshu != null' >
+        huoshidunshu = #{huoshidunshu,jdbcType=DECIMAL},
+      </if>
+ <if test='huoshiyingde != null' >
+        huoshiyingde = #{huoshiyingde,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowenyingfa != null' >
+        gaowenyingfa = #{gaowenyingfa,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowenshifa != null' >
+        gaowenshifa = #{gaowenshifa,jdbcType=DECIMAL},
+      </if>
+ <if test='jiangfa != null' >
+        jiangfa = #{jiangfa,jdbcType=DECIMAL},
+      </if>
+ <if test='total != null' >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+ </foreach> </update>
+</mapper>

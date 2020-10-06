@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<mapper namespace='com.changshun.countsystem.dao.ToalMapper' >
+
+<select id='getList' resultType='com.changshun.countsystem.pojo.Toal'  >
+   SELECT bumen,NULL AS workercode,`name`,workerid ,chuqin,quanqinjiang,gaowenfei,buzhu,gongling,gonglingmoney,NULL as gangwei,NULL AS jijiansalary,NULL AS jixiao ,NULL AS jiaban ,NULL AS jiabanfei,practical AS total,NULL AS beizhu,NULL AS jianglijinge,NULL AS fakuanjinge
+FROM t_cangku
+UNION
+SELECT bumen, workercode,`name`,workerid ,NULL as chuqin,quanqin,gaowenfei,NULL  as buzhu,gongling,NULL AS gonglingmoney ,gangwei,jijiansalary,null as jixiao,NULL AS jiaban ,NULL AS jiabanfei,totalmoney,NULL AS beizhu,NULL AS jianglijinge,NULL AS fakuanjinge
+FROM t_cangkukaoqin
+UNION
+SELECT bumen, NULL AS workercode,`name`,workerid ,NULL as chuqin,quanqin,gaowenfei,buzhu,gongling, gonglingmoney ,gangwei,NULL AS jijiansalary, jixiao,jiaban , jiabanfei,total,NULL AS beizhu,NULL AS jianglijinge,NULL AS fakuanjinge
+FROM t_cangkumanager
+UNION
+SELECT bumen, NULL AS workercode,`name`,workerid ,NULL as chuqin, quanqinjiang,gaowenfei,NULL as buzhu,gonglin, NULL AS gonglingmoney ,NULL AS gangwei,NULL AS jijiansalary, NULL AS jixiao,NULL jiaban , NULL  AS jiabanfei,zongjinge,NULL AS beizhu, jianglijinge,fakuanjinge
+FROM t_dianlanbanzu
+UNION
+SELECT bumen, zhiyuandaima,`name`,workerid , chuqin, quanqin,gaowen,NULL as buzhu,NULL AS gonglin,gonglingongzi ,gangwei, jijiangongzi, NULL AS jixiao, yebanbutie , NULL  AS jiabanfei,zongjinge,beizhu,jianglijinge,fakuanjinge
+FROM t_dianlanchuqin
+UNION
+SELECT bumen, NULL AS zhiyuandaima,`name`,workerid ,NULL AS  chuqin, NULL AS quanqin,NULL AS gaowen,NULL as buzhu,NULL AS gonglin,NULL AS gonglingongzi ,gongwei, NULL AS jijiangongzi, NULL AS jixiao, NULL AS yebanbutie , NULL  AS jiabanfei,NULL AS zongjinge,NULL AS beizhu,jianglijinge,NULL AS fakuanjinge
+FROM t_dianlanjiangli
+UNION
+SELECT bumen, NULL AS zhiyuandaima,`name`,workerid , chuqin,  quanqin, gaowenfei,NULL as buzhu,NULL AS gonglin, gonglinggongzi ,NULL AS gongwei, NULL AS jijianggongzi, NULL AS jixiao, yebanbutied , NULL  AS jiabanfei,zongjinge, beizhu,jianglijin, fakuanjin
+FROM t_dianlanjianyan
+UNION
+SELECT bumen,  zhiyuandaima,`name`,NULL AS workerid , NULL AS chuqin, NULL AS  quanqin,NULL AS  gaowenfei,NULL as buzhu,NULL AS gonglin, NULL AS gonglinggongzi , gongwei, NULL AS jijianggongzi, NULL AS jixiao, NULL AS yebanbutied , NULL  AS jiabanfei,NULL AS zongjinge,NULL AS  beizhu,NULL AS jianglijin, koufajinge
+FROM t_dianlankoufa
+UNION
+SELECT bumen,  NULL AS zhiyuandaima,`name`, workerid , leijichuqin,   quanqin,gaowenmoney,NULL as buzhu,NULL AS gonglin, NULL AS gonglinggongzi , NULL AS gongwei, NULL AS jijianggongzi, NULL AS jixiao, NULL AS yebanbutied , NULL  AS jiabanfei,NULL AS zongjinge, beizhu,NULL AS jianglijin, NULL AS koufajinge
+FROM t_fayunchuqin
+UNION
+SELECT bumen,  NULL AS zhiyuandaima,`name`, NULL AS workerid , NULL AS leijichuqin,  NULL as  quanqin,NULL AS gaowenmoney,NULL as buzhu,NULL AS gonglin, NULL AS gonglinggongzi ,  gangwei, NULL AS jijianggongzi, NULL AS jixiao, NULL AS yebanbutied , jiabangongzi, total, beizhu,NULL AS jianglijin, NULL AS koufajinge
+FROM t_fayungongzimingxi
+UNION
+SELECT bumen,  NULL AS zhiyuandaima,`name`,  workerid , NULL AS leijichuqin,  quanqinjishu, gaowenshifa,NULL as buzhu,NULL AS gonglin, NULL AS gonglinggongzi ,  NULL AS gangwei, NULL AS jijianggongzi, jixaiomoneyc, NULL AS yebanbutied , NULL AS jiabangongzi, total,NULL AS  beizhu,jiangfa, NULL AS koufajinge
+FROM t_guangzhoumoney
+UNION
+SELECT bumen,  NULL AS zhiyuandaima,`name`,  workerid , leijichuqin,  quanqing, gaowen,NULL as buzhu,NULL AS gonglin, NULL AS gonglinggongzi , gangwei, shangshajijiangongzi, NULL AS jixaiomoneyc, NULL AS yebanbutied , NULL AS jiabangongzi, totalmoney,NULL AS  beizhu,NULL AS jiangfa, NULL AS koufajinge
+FROM t_guangzhouxuexi
+UNION
+SELECT bumen,  NULL AS zhiyuandaima,NULL AS `name`,  workerid , chuqin,  quanqin, NULL AS gaowen,NULL as buzhu,NULL AS gonglin, NULL AS gonglingbutie , NULL AS gangwei,NULL AS  shangshajijiangongzi, NULL AS jixaiomoneyc, NULL AS yebanbutied , NULL AS jiabangongzi, total,  beizhu,NULL AS jiangfa, NULL AS koufajinge
+FROM t_houqin
+UNION
+SELECT bumen,  NULL AS zhiyuandaima, `name`, NULL  AS  workerid , NULL AS chuqin,  NULL AS quanqin, NULL AS gaowen,NULL as buzhu,NULL AS gonglin, NULL AS gonglingbutie , NULL AS gangwei,NULL AS  shangshajijiangongzi,  jixiaomoney, NULL AS yebanbutied , NULL AS jiabangongzi, NULL AS total,  beizhu,jiangli,  koukuan
+FROM t_houqincanjimoney
+UNION
+SELECT bumen,  NULL AS zhiyuandaima, `name`,  workerid , chuqin, quanqin, NULL AS gaowen,NULL as buzhu,NULL AS gonglin, NULL AS gonglinmoney ,  gangwei,NULL AS  shangshajijiangongzi,  jixiaomoney, NULL AS yebanbutied , NULL AS jiabangongzi, total,  beizhu,NULL AS jiangli,  NULL AS koukuan
+FROM t_houqinwentoufu
+UNION
+SELECT bumen,   zhiyuandaihao, `name`,   workerid , leijichuqin, quanqin,  gaowen,NULL as buzhu,gonglin,  gonglingongzi ,   gangwei, jijianmoney,  shifamoney, NULL AS yebanbutied , NULL AS jiabangongzi, totalmoney,  NULL AS beizhu,NULL AS jiangli,  NULL AS koukuan
+FROM t_jiechajianchuqin
+UNION
+SELECT bumen,   NULL AS zhiyuandaihao, `name`,   workerid , NULL AS leijichuqin, quanqin,  gaowen,NULL as buzhu,NULL AS gonglin,  gonglingmoney ,   gangwei, banjijianbutie,  NULL AS shifamoney, NULL AS yebanbutied , NULL AS jiabangongzi, total,  NULL AS beizhu,NULL AS jiangli,  NULL AS koukuan
+FROM t_jiechajianjishi
+UNION
+SELECT bumen,  zhiyuandaima, `name`,   workerid ,  leijichuqin, quanqin,  gaowenfei, buzhu, gongling,  NULL AS gonglingmoney ,   gangwei, jijianmoney,  NULL AS shifamoney, NULL AS yebanbutied , NULL AS jiabangongzi, totalmoney,  NULL AS beizhu,NULL AS jiangli,  NULL AS koukuan
+FROM t_jiechajiankaixianchuqin
+union
+SELECT bumen,  NULL as zhiyuandaima, `name`,   workerid ,  leijichuqin, quanqing,  gaowenfei, buzhu, gongling,   gonglingfei ,   gangwei, jijiangongzi,   shifamoney, NULL AS yebanbutied , NULL AS jiabangongzi, totalmoney,  NULL AS beizhu,NULL AS jiangli,  NULL AS koukuan
+FROM t_jiechajiankaixianjijian
+UNION
+SELECT bumen,  zhiyuandaima, `name`,   workerid ,  leijichuqin, quanqin,  gaowenmoney, NULL AS buzhu, gongling,   gonglingmoney ,   gangwei, jijianmoney,   shifamoney, NULL AS yebanbutied , NULL AS jiabangongzi, totalmoney,  NULL AS beizhu,NULL AS jiangli,  NULL AS koukuan
+FROM t_jiechajianpeijian
+UNION
+SELECT bumen,  NULL AS zhiyuandaima, `name`,   workerid ,  leijichuqin, NULL AS quanqin,  gaowenquanqin, NULL AS buzhu, gonglin,   gonglinmoney ,   gangwei, NULL AS jijianmoney,   shifamoney, NULL AS yebanbutied , jiabanmoney, total,  NULL AS beizhu,NULL AS jiangli,  NULL AS koukuan
+FROM t_jihuachuqin
+UNION
+SELECT bumen,  NULL AS zhiyuandaima, `name`,   workerid ,  leijichuqin,  quanqingjiang,  gaowenfei, NULL AS buzhu, NULL AS gonglin,   gonglingmoney ,  NULL AS gangwei,  jijiangongzi,   yingfamoney,  yebanfei , NULL AS jiabanmoney, totalmoney,  NULL AS beizhu, jiangli,  NULL AS koukuan
+FROM t_lasichuqin
+UNION
+SELECT bumen,  NULL AS zhiyuandaima, `name`,   workerid ,  NULL AS leijichuqin,  quanqin,  gaowen, NULL AS buzhu, NULL AS gonglin,   NULL AS gonglingmoney ,  NULL AS gangwei,  NULL AS jijiangongzi,   NULL AS yingfamoney,  NULL AS yebanfei , NULL AS jiabanmoney,NULL AS  totalmoney,   beizhu, NULL AS jiangli,  NULL AS koukuan
+FROM t_office
+UNION
+SELECT bumen,  NULL AS zhiyuandaima, `name`,   workerid ,  chuqindays,  quanqin,  gaowenfei, NULL AS buzhu, NULL AS gonglin,  gonglinggongzi ,   gangwei,  NULL AS jijiangongzi,  jibenmoney,  NULL AS yebanfei ,  jiabangongzi,  total,  NULL AS beizhu, NULL AS jiangli,  NULL AS koukuan
+FROM t_pingzhijishi
+UNION
+SELECT bumen,  NULL AS zhiyuandaima, `name`,   workerid ,  NULL AS chuqindays,  quanqing,  gaowen, NULL AS buzhu, NULL AS gonglin,  gonglinggongzi ,   gangwei,  NULL AS jijiangongzi,  NULL AS jibenmoney,  NULL AS yebanfei ,  NULL AS jiabangongzi,  total,  NULL AS beizhu, NULL AS jiangli,  NULL AS koukuan
+FROM t_xianshubanzuzhang
+UNION
+SELECT bumen,   zhigongdaima, `name`,   workerid ,  leijichuqin,  quanqing,  gaowen, NULL AS buzhu, gongling,  NULL AS gonglinggongzi ,   gangwei,  NULL AS jijiangongzi,  NULL AS jibenmoney,  NULL AS yebanfei ,  NULL AS jiabangongzi,  NULL AS total,  NULL AS beizhu, NULL AS jiangli,  NULL AS koukuan
+FROM t_xianshuchuqin
+UNION
+SELECT bumen,   NULL AS zhigongdaima, `name`,   workerid ,  leijichuqin,  quanqing,  gaowen, NULL AS buzhu, gongling,  gonglingfei ,   gangwei,  jijianmoney,   shifagongzi,  NULL AS yebanfei ,  NULL AS jiabangongzi,   totalmoney,  NULL AS beizhu, NULL AS jiangli,  NULL AS koukuan
+FROM t_xianshujiajianandchuqin
+UNION
+SELECT bumen,   NULL AS zhigongdaima, `name`,   workerid ,  leijichuqing,  quanqing,  gaowen, NULL AS buzhu, NULL AS gongling,  gonglinggongzi ,   gangwei,  NULL AS jijianmoney,  NULL AS  shifagongzi,  NULL AS yebanfei ,  NULL AS jiabangongzi,   totalmoney,  NULL AS beizhu, NULL AS jiangli,  NULL AS koukuan
+FROM t_xianshujishirenyuan
+UNION
+SELECT bumen,  zhiyuandaima, `name`,   workerid ,  NULL AS leijichuqing,  quanqin,  gaowenmoney, NULL AS buzhu, NULL AS gongling,  gonglinmoney ,  NULL AS  gangwei,  NULL AS jijianmoney,  jibenmoney,  NULL AS yebanfei ,  NULL AS jiabangongzi,   total1,  NULL AS beizhu,  jiangli,   koukuan
+FROM t_xingzhen
+
+
+  </select>
+
+</mapper>

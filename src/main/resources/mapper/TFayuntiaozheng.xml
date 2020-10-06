@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<mapper namespace='com.changshun.countsystem.dao.TFayuntiaozhengMapper' >
+  <resultMap id='BaseResultMap' type='com.changshun.countsystem.pojo.TFayuntiaozheng' >
+    <result column='id' property='id' jdbcType='BIGINT' />
+    <result column='name' property='name' jdbcType='VARCHAR' />
+    <result column='muqianprice' property='muqianprice' jdbcType='DECIMAL' />
+    <result column='tiaozhengprice' property='tiaozhengprice' jdbcType='DECIMAL' />
+    <result column='zhiwei' property='zhiwei' jdbcType='VARCHAR' />
+    <result column='time' property='time' jdbcType='TIMESTAMP' />
+    <result column='bumen' property='bumen' jdbcType='VARCHAR' />
+</resultMap>
+<sql id='sf'>
+    <where>
+      <if test='id != null'> and id= #{id}</if>
+      <if test='name != null'> and name= #{name}</if>
+      <if test='muqianprice != null'> and muqianprice= #{muqianprice}</if>
+      <if test='tiaozhengprice != null'> and tiaozhengprice= #{tiaozhengprice}</if>
+      <if test='zhiwei != null'> and zhiwei= #{zhiwei}</if>
+      <if test='time != null'> and time= #{time}</if>
+      <if test='bumen != null'> and bumen= #{bumen}</if>
+<if test='create_time_begin != null and create_time_end != null' > and `time` BETWEEN #{create_time_begin} AND #{create_time_end}</if>
+
+</where>    </sql>
+
+<select id='getOne' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TFayuntiaozheng' >
+    select *
+    from  `t_fayuntiaozheng`
+        <include refid='sf' />
+  </select>
+<select id='getList' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TFayuntiaozheng' >
+    select *
+    from `t_fayuntiaozheng`
+    <include refid='sf' />
+  </select>
+<delete id='delete' parameterType='com.changshun.countsystem.pojo.TFayuntiaozheng' >
+    delete from `t_fayuntiaozheng`
+    <include refid='sf' />
+  </delete>
+<select id='getCount' parameterType='com.changshun.countsystem.pojo.TFayuntiaozheng' resultType='int'>
+		select count(*) from `t_fayuntiaozheng` <include refid='sf' />
+	</select>
+<select id='getLike' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TFayuntiaozheng' >
+    select *
+    from `t_fayuntiaozheng`<where>
+      <if test='id != null'> and id like concat('%', #{id},'%')</if>
+      <if test='name != null'> and name like concat('%', #{name},'%')</if>
+      <if test='muqianprice != null'> and muqianprice like concat('%', #{muqianprice},'%')</if>
+      <if test='tiaozhengprice != null'> and tiaozhengprice like concat('%', #{tiaozhengprice},'%')</if>
+      <if test='zhiwei != null'> and zhiwei like concat('%', #{zhiwei},'%')</if>
+      <if test='time != null'> and time like concat('%', #{time},'%')</if>
+      <if test='bumen != null'> and bumen like concat('%', #{bumen},'%')</if>
+  </where></select>
+
+<insert id='insert' parameterType='com.changshun.countsystem.pojo.TFayuntiaozheng' >
+    insert into `t_fayuntiaozheng`
+    <trim prefix='(' suffix=')' suffixOverrides=',' >
+      <if test='id != null' >
+        id,
+</if>
+      <if test='name != null' >
+        name,
+</if>
+      <if test='muqianprice != null' >
+        muqianprice,
+</if>
+      <if test='tiaozhengprice != null' >
+        tiaozhengprice,
+</if>
+      <if test='zhiwei != null' >
+        zhiwei,
+</if>
+      <if test='time != null' >
+        time,
+</if>
+      <if test='bumen != null' >
+        bumen,
+</if>
+
+ </trim>
+    <trim prefix='values (' suffix=')' suffixOverrides=',' >
+ <if test='id != null' >
+        #{id ,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        #{name ,jdbcType=VARCHAR},
+      </if>
+ <if test='muqianprice != null' >
+        #{muqianprice ,jdbcType=DECIMAL},
+      </if>
+ <if test='tiaozhengprice != null' >
+        #{tiaozhengprice ,jdbcType=DECIMAL},
+      </if>
+ <if test='zhiwei != null' >
+        #{zhiwei ,jdbcType=VARCHAR},
+      </if>
+ <if test='time != null' >
+        #{time ,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        #{bumen ,jdbcType=VARCHAR},
+      </if>
+</trim>
+  </insert>
+  <update id='update' parameterType='com.changshun.countsystem.pojo.TFayuntiaozheng' >
+    update `t_fayuntiaozheng`
+    <set >
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='muqianprice != null' >
+        muqianprice = #{muqianprice,jdbcType=DECIMAL},
+      </if>
+ <if test='tiaozhengprice != null' >
+        tiaozhengprice = #{tiaozhengprice,jdbcType=DECIMAL},
+      </if>
+ <if test='zhiwei != null' >
+        zhiwei = #{zhiwei,jdbcType=VARCHAR},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<delete id='deleteAll'>
+		DELETE FROM `t_fayuntiaozheng` WHERE id IN
+		<foreach collection='ids' item='id' open='(' separator=',' close=')'>
+			#{ id }
+		</foreach>
+	</delete>
+  <update id='updateAll'   parameterType='java.util.List'>
+   <foreach collection='T' item='t' index='index' open='' close='' separator=';'> 
+   update `t_fayuntiaozheng`
+
+ <set >
+
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='muqianprice != null' >
+        muqianprice = #{muqianprice,jdbcType=DECIMAL},
+      </if>
+ <if test='tiaozhengprice != null' >
+        tiaozhengprice = #{tiaozhengprice,jdbcType=DECIMAL},
+      </if>
+ <if test='zhiwei != null' >
+        zhiwei = #{zhiwei,jdbcType=VARCHAR},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+ </foreach> </update>
+</mapper>

@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<mapper namespace='com.changshun.countsystem.dao.TFayungongzimingxiMapper' >
+  <resultMap id='BaseResultMap' type='com.changshun.countsystem.pojo.TFayungongzimingxi' >
+    <result column='id' property='id' jdbcType='BIGINT' />
+    <result column='name' property='name' jdbcType='VARCHAR' />
+    <result column='gangwei' property='gangwei' jdbcType='VARCHAR' />
+    <result column='jibengongzi' property='jibengongzi' jdbcType='DECIMAL' />
+    <result column='jiabangongzi' property='jiabangongzi' jdbcType='DECIMAL' />
+    <result column='total' property='total' jdbcType='DECIMAL' />
+    <result column='beizhu' property='beizhu' jdbcType='VARCHAR' />
+    <result column='time' property='time' jdbcType='TIMESTAMP' />
+    <result column='bumen' property='bumen' jdbcType='VARCHAR' />
+</resultMap>
+<sql id='sf'>
+    <where>
+      <if test='id != null'> and id= #{id}</if>
+      <if test='name != null'> and name= #{name}</if>
+      <if test='gangwei != null'> and gangwei= #{gangwei}</if>
+      <if test='jibengongzi != null'> and jibengongzi= #{jibengongzi}</if>
+      <if test='jiabangongzi != null'> and jiabangongzi= #{jiabangongzi}</if>
+      <if test='total != null'> and total= #{total}</if>
+      <if test='beizhu != null'> and beizhu= #{beizhu}</if>
+      <if test='time != null'> and time= #{time}</if>
+      <if test='bumen != null'> and bumen= #{bumen}</if>
+<if test='create_time_begin != null and create_time_end != null' > and `time` BETWEEN #{create_time_begin} AND #{create_time_end}</if>
+
+</where>    </sql>
+
+<select id='getOne' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TFayungongzimingxi' >
+    select *
+    from  `t_fayungongzimingxi`
+        <include refid='sf' />
+  </select>
+<select id='getList' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TFayungongzimingxi' >
+    select *
+    from `t_fayungongzimingxi`
+    <include refid='sf' />
+  </select>
+<delete id='delete' parameterType='com.changshun.countsystem.pojo.TFayungongzimingxi' >
+    delete from `t_fayungongzimingxi`
+    <include refid='sf' />
+  </delete>
+<select id='getCount' parameterType='com.changshun.countsystem.pojo.TFayungongzimingxi' resultType='int'>
+		select count(*) from `t_fayungongzimingxi` <include refid='sf' />
+	</select>
+<select id='getLike' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TFayungongzimingxi' >
+    select *
+    from `t_fayungongzimingxi`<where>
+      <if test='id != null'> and id like concat('%', #{id},'%')</if>
+      <if test='name != null'> and name like concat('%', #{name},'%')</if>
+      <if test='gangwei != null'> and gangwei like concat('%', #{gangwei},'%')</if>
+      <if test='jibengongzi != null'> and jibengongzi like concat('%', #{jibengongzi},'%')</if>
+      <if test='jiabangongzi != null'> and jiabangongzi like concat('%', #{jiabangongzi},'%')</if>
+      <if test='total != null'> and total like concat('%', #{total},'%')</if>
+      <if test='beizhu != null'> and beizhu like concat('%', #{beizhu},'%')</if>
+      <if test='time != null'> and time like concat('%', #{time},'%')</if>
+      <if test='bumen != null'> and bumen like concat('%', #{bumen},'%')</if>
+  </where></select>
+
+<insert id='insert' parameterType='com.changshun.countsystem.pojo.TFayungongzimingxi' >
+    insert into `t_fayungongzimingxi`
+    <trim prefix='(' suffix=')' suffixOverrides=',' >
+      <if test='id != null' >
+        id,
+</if>
+      <if test='name != null' >
+        name,
+</if>
+      <if test='gangwei != null' >
+        gangwei,
+</if>
+      <if test='jibengongzi != null' >
+        jibengongzi,
+</if>
+      <if test='jiabangongzi != null' >
+        jiabangongzi,
+</if>
+      <if test='total != null' >
+        total,
+</if>
+      <if test='beizhu != null' >
+        beizhu,
+</if>
+      <if test='time != null' >
+        time,
+</if>
+      <if test='bumen != null' >
+        bumen,
+</if>
+
+ </trim>
+    <trim prefix='values (' suffix=')' suffixOverrides=',' >
+ <if test='id != null' >
+        #{id ,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        #{name ,jdbcType=VARCHAR},
+      </if>
+ <if test='gangwei != null' >
+        #{gangwei ,jdbcType=VARCHAR},
+      </if>
+ <if test='jibengongzi != null' >
+        #{jibengongzi ,jdbcType=DECIMAL},
+      </if>
+ <if test='jiabangongzi != null' >
+        #{jiabangongzi ,jdbcType=DECIMAL},
+      </if>
+ <if test='total != null' >
+        #{total ,jdbcType=DECIMAL},
+      </if>
+ <if test='beizhu != null' >
+        #{beizhu ,jdbcType=VARCHAR},
+      </if>
+ <if test='time != null' >
+        #{time ,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        #{bumen ,jdbcType=VARCHAR},
+      </if>
+</trim>
+  </insert>
+  <update id='update' parameterType='com.changshun.countsystem.pojo.TFayungongzimingxi' >
+    update `t_fayungongzimingxi`
+    <set >
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='gangwei != null' >
+        gangwei = #{gangwei,jdbcType=VARCHAR},
+      </if>
+ <if test='jibengongzi != null' >
+        jibengongzi = #{jibengongzi,jdbcType=DECIMAL},
+      </if>
+ <if test='jiabangongzi != null' >
+        jiabangongzi = #{jiabangongzi,jdbcType=DECIMAL},
+      </if>
+ <if test='total != null' >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+ <if test='beizhu != null' >
+        beizhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<delete id='deleteAll'>
+		DELETE FROM `t_fayungongzimingxi` WHERE id IN
+		<foreach collection='ids' item='id' open='(' separator=',' close=')'>
+			#{ id }
+		</foreach>
+	</delete>
+  <update id='updateAll'   parameterType='java.util.List'>
+   <foreach collection='T' item='t' index='index' open='' close='' separator=';'> 
+   update `t_fayungongzimingxi`
+
+ <set >
+
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='gangwei != null' >
+        gangwei = #{gangwei,jdbcType=VARCHAR},
+      </if>
+ <if test='jibengongzi != null' >
+        jibengongzi = #{jibengongzi,jdbcType=DECIMAL},
+      </if>
+ <if test='jiabangongzi != null' >
+        jiabangongzi = #{jiabangongzi,jdbcType=DECIMAL},
+      </if>
+ <if test='total != null' >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+ <if test='beizhu != null' >
+        beizhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+ </foreach> </update>
+</mapper>

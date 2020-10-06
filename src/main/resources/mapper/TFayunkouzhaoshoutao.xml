@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<mapper namespace='com.changshun.countsystem.dao.TFayunkouzhaoshoutaoMapper' >
+  <resultMap id='BaseResultMap' type='com.changshun.countsystem.pojo.TFayunkouzhaoshoutao' >
+    <result column='id' property='id' jdbcType='BIGINT' />
+    <result column='name' property='name' jdbcType='VARCHAR' />
+    <result column='kouzhao' property='kouzhao' jdbcType='DECIMAL' />
+    <result column='shoutao' property='shoutao' jdbcType='DECIMAL' />
+    <result column='time' property='time' jdbcType='TIMESTAMP' />
+    <result column='bumen' property='bumen' jdbcType='VARCHAR' />
+</resultMap>
+<sql id='sf'>
+    <where>
+      <if test='id != null'> and id= #{id}</if>
+      <if test='name != null'> and name= #{name}</if>
+      <if test='kouzhao != null'> and kouzhao= #{kouzhao}</if>
+      <if test='shoutao != null'> and shoutao= #{shoutao}</if>
+      <if test='time != null'> and time= #{time}</if>
+      <if test='bumen != null'> and bumen= #{bumen}</if>
+<if test='create_time_begin != null and create_time_end != null' > and `time` BETWEEN #{create_time_begin} AND #{create_time_end}</if>
+
+</where>    </sql>
+
+<select id='getOne' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TFayunkouzhaoshoutao' >
+    select *
+    from  `t_fayunkouzhaoshoutao`
+        <include refid='sf' />
+  </select>
+<select id='getList' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TFayunkouzhaoshoutao' >
+    select *
+    from `t_fayunkouzhaoshoutao`
+    <include refid='sf' />
+  </select>
+<delete id='delete' parameterType='com.changshun.countsystem.pojo.TFayunkouzhaoshoutao' >
+    delete from `t_fayunkouzhaoshoutao`
+    <include refid='sf' />
+  </delete>
+<select id='getCount' parameterType='com.changshun.countsystem.pojo.TFayunkouzhaoshoutao' resultType='int'>
+		select count(*) from `t_fayunkouzhaoshoutao` <include refid='sf' />
+	</select>
+<select id='getLike' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TFayunkouzhaoshoutao' >
+    select *
+    from `t_fayunkouzhaoshoutao`<where>
+      <if test='id != null'> and id like concat('%', #{id},'%')</if>
+      <if test='name != null'> and name like concat('%', #{name},'%')</if>
+      <if test='kouzhao != null'> and kouzhao like concat('%', #{kouzhao},'%')</if>
+      <if test='shoutao != null'> and shoutao like concat('%', #{shoutao},'%')</if>
+      <if test='time != null'> and time like concat('%', #{time},'%')</if>
+      <if test='bumen != null'> and bumen like concat('%', #{bumen},'%')</if>
+  </where></select>
+
+<insert id='insert' parameterType='com.changshun.countsystem.pojo.TFayunkouzhaoshoutao' >
+    insert into `t_fayunkouzhaoshoutao`
+    <trim prefix='(' suffix=')' suffixOverrides=',' >
+      <if test='id != null' >
+        id,
+</if>
+      <if test='name != null' >
+        name,
+</if>
+      <if test='kouzhao != null' >
+        kouzhao,
+</if>
+      <if test='shoutao != null' >
+        shoutao,
+</if>
+      <if test='time != null' >
+        time,
+</if>
+      <if test='bumen != null' >
+        bumen,
+</if>
+
+ </trim>
+    <trim prefix='values (' suffix=')' suffixOverrides=',' >
+ <if test='id != null' >
+        #{id ,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        #{name ,jdbcType=VARCHAR},
+      </if>
+ <if test='kouzhao != null' >
+        #{kouzhao ,jdbcType=DECIMAL},
+      </if>
+ <if test='shoutao != null' >
+        #{shoutao ,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        #{time ,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        #{bumen ,jdbcType=VARCHAR},
+      </if>
+</trim>
+  </insert>
+  <update id='update' parameterType='com.changshun.countsystem.pojo.TFayunkouzhaoshoutao' >
+    update `t_fayunkouzhaoshoutao`
+    <set >
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='kouzhao != null' >
+        kouzhao = #{kouzhao,jdbcType=DECIMAL},
+      </if>
+ <if test='shoutao != null' >
+        shoutao = #{shoutao,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<delete id='deleteAll'>
+		DELETE FROM `t_fayunkouzhaoshoutao` WHERE id IN
+		<foreach collection='ids' item='id' open='(' separator=',' close=')'>
+			#{ id }
+		</foreach>
+	</delete>
+  <update id='updateAll'   parameterType='java.util.List'>
+   <foreach collection='T' item='t' index='index' open='' close='' separator=';'> 
+   update `t_fayunkouzhaoshoutao`
+
+ <set >
+
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='kouzhao != null' >
+        kouzhao = #{kouzhao,jdbcType=DECIMAL},
+      </if>
+ <if test='shoutao != null' >
+        shoutao = #{shoutao,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+ </foreach> </update>
+</mapper>

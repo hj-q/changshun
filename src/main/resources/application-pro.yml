@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://8.129.18.200:3306/changshun?serverTimezone=GMT
+    username: zhangq
+    password: 123456
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.changshun.countsystem.pojo
+
+server:
+  port: 8084
+
+#日志文件待定
+logging:
+  file:
+    path: /usr/local/
+    name: changshunsys.log
+  level: error

@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<mapper namespace='com.changshun.countsystem.dao.THouqinzhuxundamoneyMapper' >
+  <resultMap id='BaseResultMap' type='com.changshun.countsystem.pojo.THouqinzhuxundamoney' >
+    <result column='id' property='id' jdbcType='BIGINT' />
+    <result column='name' property='name' jdbcType='VARCHAR' />
+    <result column='chuqin' property='chuqin' jdbcType='DECIMAL' />
+    <result column='quanqin' property='quanqin' jdbcType='DECIMAL' />
+    <result column='qita' property='qita' jdbcType='DECIMAL' />
+    <result column='gongzi' property='gongzi' jdbcType='DECIMAL' />
+    <result column='total' property='total' jdbcType='DECIMAL' />
+    <result column='time' property='time' jdbcType='TIMESTAMP' />
+    <result column='bumen' property='bumen' jdbcType='VARCHAR' />
+</resultMap>
+<sql id='sf'>
+    <where>
+      <if test='id != null'> and id= #{id}</if>
+      <if test='name != null'> and name= #{name}</if>
+      <if test='chuqin != null'> and chuqin= #{chuqin}</if>
+      <if test='quanqin != null'> and quanqin= #{quanqin}</if>
+      <if test='qita != null'> and qita= #{qita}</if>
+      <if test='gongzi != null'> and gongzi= #{gongzi}</if>
+      <if test='total != null'> and total= #{total}</if>
+      <if test='time != null'> and time= #{time}</if>
+      <if test='bumen != null'> and bumen= #{bumen}</if>
+<if test='create_time_begin != null and create_time_end != null' > and `time` BETWEEN #{create_time_begin} AND #{create_time_end}</if>
+
+</where>    </sql>
+
+<select id='getOne' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.THouqinzhuxundamoney' >
+    select *
+    from  `t_houqinzhuxundamoney`
+        <include refid='sf' />
+  </select>
+<select id='getList' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.THouqinzhuxundamoney' >
+    select *
+    from `t_houqinzhuxundamoney`
+    <include refid='sf' />
+  </select>
+<delete id='delete' parameterType='com.changshun.countsystem.pojo.THouqinzhuxundamoney' >
+    delete from `t_houqinzhuxundamoney`
+    <include refid='sf' />
+  </delete>
+<select id='getCount' parameterType='com.changshun.countsystem.pojo.THouqinzhuxundamoney' resultType='int'>
+		select count(*) from `t_houqinzhuxundamoney` <include refid='sf' />
+	</select>
+<select id='getLike' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.THouqinzhuxundamoney' >
+    select *
+    from `t_houqinzhuxundamoney`<where>
+      <if test='id != null'> and id like concat('%', #{id},'%')</if>
+      <if test='name != null'> and name like concat('%', #{name},'%')</if>
+      <if test='chuqin != null'> and chuqin like concat('%', #{chuqin},'%')</if>
+      <if test='quanqin != null'> and quanqin like concat('%', #{quanqin},'%')</if>
+      <if test='qita != null'> and qita like concat('%', #{qita},'%')</if>
+      <if test='gongzi != null'> and gongzi like concat('%', #{gongzi},'%')</if>
+      <if test='total != null'> and total like concat('%', #{total},'%')</if>
+      <if test='time != null'> and time like concat('%', #{time},'%')</if>
+      <if test='bumen != null'> and bumen like concat('%', #{bumen},'%')</if>
+  </where></select>
+
+<insert id='insert' parameterType='com.changshun.countsystem.pojo.THouqinzhuxundamoney' >
+    insert into `t_houqinzhuxundamoney`
+    <trim prefix='(' suffix=')' suffixOverrides=',' >
+      <if test='id != null' >
+        id,
+</if>
+      <if test='name != null' >
+        name,
+</if>
+      <if test='chuqin != null' >
+        chuqin,
+</if>
+      <if test='quanqin != null' >
+        quanqin,
+</if>
+      <if test='qita != null' >
+        qita,
+</if>
+      <if test='gongzi != null' >
+        gongzi,
+</if>
+      <if test='total != null' >
+        total,
+</if>
+      <if test='time != null' >
+        time,
+</if>
+      <if test='bumen != null' >
+        bumen,
+</if>
+
+ </trim>
+    <trim prefix='values (' suffix=')' suffixOverrides=',' >
+ <if test='id != null' >
+        #{id ,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        #{name ,jdbcType=VARCHAR},
+      </if>
+ <if test='chuqin != null' >
+        #{chuqin ,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqin != null' >
+        #{quanqin ,jdbcType=DECIMAL},
+      </if>
+ <if test='qita != null' >
+        #{qita ,jdbcType=DECIMAL},
+      </if>
+ <if test='gongzi != null' >
+        #{gongzi ,jdbcType=DECIMAL},
+      </if>
+ <if test='total != null' >
+        #{total ,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        #{time ,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        #{bumen ,jdbcType=VARCHAR},
+      </if>
+</trim>
+  </insert>
+  <update id='update' parameterType='com.changshun.countsystem.pojo.THouqinzhuxundamoney' >
+    update `t_houqinzhuxundamoney`
+    <set >
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='chuqin != null' >
+        chuqin = #{chuqin,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqin != null' >
+        quanqin = #{quanqin,jdbcType=DECIMAL},
+      </if>
+ <if test='qita != null' >
+        qita = #{qita,jdbcType=DECIMAL},
+      </if>
+ <if test='gongzi != null' >
+        gongzi = #{gongzi,jdbcType=DECIMAL},
+      </if>
+ <if test='total != null' >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<delete id='deleteAll'>
+		DELETE FROM `t_houqinzhuxundamoney` WHERE id IN
+		<foreach collection='ids' item='id' open='(' separator=',' close=')'>
+			#{ id }
+		</foreach>
+	</delete>
+  <update id='updateAll'   parameterType='java.util.List'>
+   <foreach collection='T' item='t' index='index' open='' close='' separator=';'> 
+   update `t_houqinzhuxundamoney`
+
+ <set >
+
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='chuqin != null' >
+        chuqin = #{chuqin,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqin != null' >
+        quanqin = #{quanqin,jdbcType=DECIMAL},
+      </if>
+ <if test='qita != null' >
+        qita = #{qita,jdbcType=DECIMAL},
+      </if>
+ <if test='gongzi != null' >
+        gongzi = #{gongzi,jdbcType=DECIMAL},
+      </if>
+ <if test='total != null' >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+ </foreach> </update>
+</mapper>

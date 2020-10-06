@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<mapper namespace='com.changshun.countsystem.dao.TSupermanagerMapper' >
+  <resultMap id='BaseResultMap' type='com.changshun.countsystem.pojo.TSupermanager' >
+    <result column='id' property='id' jdbcType='BIGINT' />
+    <result column='count' property='count' jdbcType='VARCHAR' />
+    <result column='password' property='password' jdbcType='VARCHAR' />
+</resultMap>
+<sql id='sf'>
+    <where>
+      <if test='id != null'> and id= #{id}</if>
+      <if test='count != null'> and count= #{count}</if>
+      <if test='password != null'> and password= #{password}</if>
+<if test='create_time_begin != null and create_time_end != null' > and `time` BETWEEN #{create_time_begin} AND #{create_time_end}</if>
+
+</where>    </sql>
+
+<select id='getOne' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TSupermanager' >
+    select *
+    from  `t_supermanager`
+        <include refid='sf' />
+  </select>
+<select id='getList' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TSupermanager' >
+    select *
+    from `t_supermanager`
+    <include refid='sf' />
+  </select>
+<delete id='delete' parameterType='com.changshun.countsystem.pojo.TSupermanager' >
+    delete from `t_supermanager`
+    <include refid='sf' />
+  </delete>
+<select id='getCount' parameterType='com.changshun.countsystem.pojo.TSupermanager' resultType='int'>
+		select count(*) from `t_supermanager` <include refid='sf' />
+	</select>
+<select id='getLike' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TSupermanager' >
+    select *
+    from `t_supermanager`<where>
+      <if test='id != null'> and id like concat('%', #{id},'%')</if>
+      <if test='count != null'> and count like concat('%', #{count},'%')</if>
+      <if test='password != null'> and password like concat('%', #{password},'%')</if>
+  </where></select>
+
+<insert id='insert' parameterType='com.changshun.countsystem.pojo.TSupermanager' >
+    insert into `t_supermanager`
+    <trim prefix='(' suffix=')' suffixOverrides=',' >
+      <if test='id != null' >
+        id,
+</if>
+      <if test='count != null' >
+        count,
+</if>
+      <if test='password != null' >
+        password,
+</if>
+
+ </trim>
+    <trim prefix='values (' suffix=')' suffixOverrides=',' >
+ <if test='id != null' >
+        #{id ,jdbcType=BIGINT},
+      </if>
+ <if test='count != null' >
+        #{count ,jdbcType=VARCHAR},
+      </if>
+ <if test='password != null' >
+        #{password ,jdbcType=VARCHAR},
+      </if>
+</trim>
+  </insert>
+  <update id='update' parameterType='com.changshun.countsystem.pojo.TSupermanager' >
+    update `t_supermanager`
+    <set >
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='count != null' >
+        count = #{count,jdbcType=VARCHAR},
+      </if>
+ <if test='password != null' >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<delete id='deleteAll'>
+		DELETE FROM `t_supermanager` WHERE id IN
+		<foreach collection='ids' item='id' open='(' separator=',' close=')'>
+			#{ id }
+		</foreach>
+	</delete>
+  <update id='updateAll'   parameterType='java.util.List'>
+   <foreach collection='T' item='t' index='index' open='' close='' separator=';'> 
+   update `t_supermanager`
+
+ <set >
+
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='count != null' >
+        count = #{count,jdbcType=VARCHAR},
+      </if>
+ <if test='password != null' >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+ </foreach> </update>
+</mapper>

@@ -1,0 +1,244 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<mapper namespace='com.changshun.countsystem.dao.TGuangzhouxuexiMapper' >
+  <resultMap id='BaseResultMap' type='com.changshun.countsystem.pojo.TGuangzhouxuexi' >
+    <result column='id' property='id' jdbcType='BIGINT' />
+    <result column='workerid' property='workerid' jdbcType='VARCHAR' />
+    <result column='name' property='name' jdbcType='VARCHAR' />
+    <result column='gangwei' property='gangwei' jdbcType='VARCHAR' />
+    <result column='leijichuqin' property='leijichuqin' jdbcType='DECIMAL' />
+    <result column='jishigongzibyday' property='jishigongzibyday' jdbcType='DECIMAL' />
+    <result column='shangshajijiangongzi' property='shangshajijiangongzi' jdbcType='DECIMAL' />
+    <result column='gaowen' property='gaowen' jdbcType='DECIMAL' />
+    <result column='quanqing' property='quanqing' jdbcType='DECIMAL' />
+    <result column='totalmoney' property='totalmoney' jdbcType='DECIMAL' />
+    <result column='time' property='time' jdbcType='TIMESTAMP' />
+    <result column='bumen' property='bumen' jdbcType='VARCHAR' />
+</resultMap>
+<sql id='sf'>
+    <where>
+      <if test='id != null'> and id= #{id}</if>
+      <if test='workerid != null'> and workerid= #{workerid}</if>
+      <if test='name != null'> and name= #{name}</if>
+      <if test='gangwei != null'> and gangwei= #{gangwei}</if>
+      <if test='leijichuqin != null'> and leijichuqin= #{leijichuqin}</if>
+      <if test='jishigongzibyday != null'> and jishigongzibyday= #{jishigongzibyday}</if>
+      <if test='shangshajijiangongzi != null'> and shangshajijiangongzi= #{shangshajijiangongzi}</if>
+      <if test='gaowen != null'> and gaowen= #{gaowen}</if>
+      <if test='quanqing != null'> and quanqing= #{quanqing}</if>
+      <if test='totalmoney != null'> and totalmoney= #{totalmoney}</if>
+      <if test='time != null'> and time= #{time}</if>
+      <if test='bumen != null'> and bumen= #{bumen}</if>
+<if test='create_time_begin != null and create_time_end != null' > and `time` BETWEEN #{create_time_begin} AND #{create_time_end}</if>
+
+</where>    </sql>
+
+<select id='getOne' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TGuangzhouxuexi' >
+    select *
+    from  `t_guangzhouxuexi`
+        <include refid='sf' />
+  </select>
+<select id='getList' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TGuangzhouxuexi' >
+    select *
+    from `t_guangzhouxuexi`
+    <include refid='sf' />
+  </select>
+<delete id='delete' parameterType='com.changshun.countsystem.pojo.TGuangzhouxuexi' >
+    delete from `t_guangzhouxuexi`
+    <include refid='sf' />
+  </delete>
+<select id='getCount' parameterType='com.changshun.countsystem.pojo.TGuangzhouxuexi' resultType='int'>
+		select count(*) from `t_guangzhouxuexi` <include refid='sf' />
+	</select>
+<select id='getLike' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TGuangzhouxuexi' >
+    select *
+    from `t_guangzhouxuexi`<where>
+      <if test='id != null'> and id like concat('%', #{id},'%')</if>
+      <if test='workerid != null'> and workerid like concat('%', #{workerid},'%')</if>
+      <if test='name != null'> and name like concat('%', #{name},'%')</if>
+      <if test='gangwei != null'> and gangwei like concat('%', #{gangwei},'%')</if>
+      <if test='leijichuqin != null'> and leijichuqin like concat('%', #{leijichuqin},'%')</if>
+      <if test='jishigongzibyday != null'> and jishigongzibyday like concat('%', #{jishigongzibyday},'%')</if>
+      <if test='shangshajijiangongzi != null'> and shangshajijiangongzi like concat('%', #{shangshajijiangongzi},'%')</if>
+      <if test='gaowen != null'> and gaowen like concat('%', #{gaowen},'%')</if>
+      <if test='quanqing != null'> and quanqing like concat('%', #{quanqing},'%')</if>
+      <if test='totalmoney != null'> and totalmoney like concat('%', #{totalmoney},'%')</if>
+      <if test='time != null'> and time like concat('%', #{time},'%')</if>
+      <if test='bumen != null'> and bumen like concat('%', #{bumen},'%')</if>
+  </where></select>
+
+<insert id='insert' parameterType='com.changshun.countsystem.pojo.TGuangzhouxuexi' >
+    insert into `t_guangzhouxuexi`
+    <trim prefix='(' suffix=')' suffixOverrides=',' >
+      <if test='id != null' >
+        id,
+</if>
+      <if test='workerid != null' >
+        workerid,
+</if>
+      <if test='name != null' >
+        name,
+</if>
+      <if test='gangwei != null' >
+        gangwei,
+</if>
+      <if test='leijichuqin != null' >
+        leijichuqin,
+</if>
+      <if test='jishigongzibyday != null' >
+        jishigongzibyday,
+</if>
+      <if test='shangshajijiangongzi != null' >
+        shangshajijiangongzi,
+</if>
+      <if test='gaowen != null' >
+        gaowen,
+</if>
+      <if test='quanqing != null' >
+        quanqing,
+</if>
+      <if test='totalmoney != null' >
+        totalmoney,
+</if>
+      <if test='time != null' >
+        time,
+</if>
+      <if test='bumen != null' >
+        bumen,
+</if>
+
+ </trim>
+    <trim prefix='values (' suffix=')' suffixOverrides=',' >
+ <if test='id != null' >
+        #{id ,jdbcType=BIGINT},
+      </if>
+ <if test='workerid != null' >
+        #{workerid ,jdbcType=VARCHAR},
+      </if>
+ <if test='name != null' >
+        #{name ,jdbcType=VARCHAR},
+      </if>
+ <if test='gangwei != null' >
+        #{gangwei ,jdbcType=VARCHAR},
+      </if>
+ <if test='leijichuqin != null' >
+        #{leijichuqin ,jdbcType=DECIMAL},
+      </if>
+ <if test='jishigongzibyday != null' >
+        #{jishigongzibyday ,jdbcType=DECIMAL},
+      </if>
+ <if test='shangshajijiangongzi != null' >
+        #{shangshajijiangongzi ,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowen != null' >
+        #{gaowen ,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqing != null' >
+        #{quanqing ,jdbcType=DECIMAL},
+      </if>
+ <if test='totalmoney != null' >
+        #{totalmoney ,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        #{time ,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        #{bumen ,jdbcType=VARCHAR},
+      </if>
+</trim>
+  </insert>
+  <update id='update' parameterType='com.changshun.countsystem.pojo.TGuangzhouxuexi' >
+    update `t_guangzhouxuexi`
+    <set >
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='workerid != null' >
+        workerid = #{workerid,jdbcType=VARCHAR},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='gangwei != null' >
+        gangwei = #{gangwei,jdbcType=VARCHAR},
+      </if>
+ <if test='leijichuqin != null' >
+        leijichuqin = #{leijichuqin,jdbcType=DECIMAL},
+      </if>
+ <if test='jishigongzibyday != null' >
+        jishigongzibyday = #{jishigongzibyday,jdbcType=DECIMAL},
+      </if>
+ <if test='shangshajijiangongzi != null' >
+        shangshajijiangongzi = #{shangshajijiangongzi,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowen != null' >
+        gaowen = #{gaowen,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqing != null' >
+        quanqing = #{quanqing,jdbcType=DECIMAL},
+      </if>
+ <if test='totalmoney != null' >
+        totalmoney = #{totalmoney,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<delete id='deleteAll'>
+		DELETE FROM `t_guangzhouxuexi` WHERE id IN
+		<foreach collection='ids' item='id' open='(' separator=',' close=')'>
+			#{ id }
+		</foreach>
+	</delete>
+  <update id='updateAll'   parameterType='java.util.List'>
+   <foreach collection='T' item='t' index='index' open='' close='' separator=';'> 
+   update `t_guangzhouxuexi`
+
+ <set >
+
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='workerid != null' >
+        workerid = #{workerid,jdbcType=VARCHAR},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='gangwei != null' >
+        gangwei = #{gangwei,jdbcType=VARCHAR},
+      </if>
+ <if test='leijichuqin != null' >
+        leijichuqin = #{leijichuqin,jdbcType=DECIMAL},
+      </if>
+ <if test='jishigongzibyday != null' >
+        jishigongzibyday = #{jishigongzibyday,jdbcType=DECIMAL},
+      </if>
+ <if test='shangshajijiangongzi != null' >
+        shangshajijiangongzi = #{shangshajijiangongzi,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowen != null' >
+        gaowen = #{gaowen,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqing != null' >
+        quanqing = #{quanqing,jdbcType=DECIMAL},
+      </if>
+ <if test='totalmoney != null' >
+        totalmoney = #{totalmoney,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+ </foreach> </update>
+</mapper>

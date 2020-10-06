@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<mapper namespace='com.changshun.countsystem.dao.TDianlankoufaMapper' >
+  <resultMap id='BaseResultMap' type='com.changshun.countsystem.pojo.TDianlankoufa' >
+    <result column='id' property='id' jdbcType='BIGINT' />
+    <result column='zhiyuandaima' property='zhiyuandaima' jdbcType='VARCHAR' />
+    <result column='name' property='name' jdbcType='VARCHAR' />
+    <result column='gongwei' property='gongwei' jdbcType='VARCHAR' />
+    <result column='guocheng' property='guocheng' jdbcType='DECIMAL' />
+    <result column='neibutousu' property='neibutousu' jdbcType='DECIMAL' />
+    <result column='guifanzhixing' property='guifanzhixing' jdbcType='DECIMAL' />
+    <result column='koufajinge' property='koufajinge' jdbcType='DECIMAL' />
+    <result column='time' property='time' jdbcType='TIMESTAMP' />
+    <result column='bumen' property='bumen' jdbcType='VARCHAR' />
+</resultMap>
+<sql id='sf'>
+    <where>
+      <if test='id != null'> and id= #{id}</if>
+      <if test='zhiyuandaima != null'> and zhiyuandaima= #{zhiyuandaima}</if>
+      <if test='name != null'> and name= #{name}</if>
+      <if test='gongwei != null'> and gongwei= #{gongwei}</if>
+      <if test='guocheng != null'> and guocheng= #{guocheng}</if>
+      <if test='neibutousu != null'> and neibutousu= #{neibutousu}</if>
+      <if test='guifanzhixing != null'> and guifanzhixing= #{guifanzhixing}</if>
+      <if test='koufajinge != null'> and koufajinge= #{koufajinge}</if>
+      <if test='time != null'> and time= #{time}</if>
+      <if test='bumen != null'> and bumen= #{bumen}</if>
+<if test='create_time_begin != null and create_time_end != null' > and `time` BETWEEN #{create_time_begin} AND #{create_time_end}</if>
+
+</where>    </sql>
+
+<select id='getOne' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TDianlankoufa' >
+    select *
+    from  `t_dianlankoufa`
+        <include refid='sf' />
+  </select>
+<select id='getList' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TDianlankoufa' >
+    select *
+    from `t_dianlankoufa`
+    <include refid='sf' />
+  </select>
+<delete id='delete' parameterType='com.changshun.countsystem.pojo.TDianlankoufa' >
+    delete from `t_dianlankoufa`
+    <include refid='sf' />
+  </delete>
+<select id='getCount' parameterType='com.changshun.countsystem.pojo.TDianlankoufa' resultType='int'>
+		select count(*) from `t_dianlankoufa` <include refid='sf' />
+	</select>
+<select id='getLike' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TDianlankoufa' >
+    select *
+    from `t_dianlankoufa`<where>
+      <if test='id != null'> and id like concat('%', #{id},'%')</if>
+      <if test='zhiyuandaima != null'> and zhiyuandaima like concat('%', #{zhiyuandaima},'%')</if>
+      <if test='name != null'> and name like concat('%', #{name},'%')</if>
+      <if test='gongwei != null'> and gongwei like concat('%', #{gongwei},'%')</if>
+      <if test='guocheng != null'> and guocheng like concat('%', #{guocheng},'%')</if>
+      <if test='neibutousu != null'> and neibutousu like concat('%', #{neibutousu},'%')</if>
+      <if test='guifanzhixing != null'> and guifanzhixing like concat('%', #{guifanzhixing},'%')</if>
+      <if test='koufajinge != null'> and koufajinge like concat('%', #{koufajinge},'%')</if>
+      <if test='time != null'> and time like concat('%', #{time},'%')</if>
+      <if test='bumen != null'> and bumen like concat('%', #{bumen},'%')</if>
+  </where></select>
+
+<insert id='insert' parameterType='com.changshun.countsystem.pojo.TDianlankoufa' >
+    insert into `t_dianlankoufa`
+    <trim prefix='(' suffix=')' suffixOverrides=',' >
+      <if test='id != null' >
+        id,
+</if>
+      <if test='zhiyuandaima != null' >
+        zhiyuandaima,
+</if>
+      <if test='name != null' >
+        name,
+</if>
+      <if test='gongwei != null' >
+        gongwei,
+</if>
+      <if test='guocheng != null' >
+        guocheng,
+</if>
+      <if test='neibutousu != null' >
+        neibutousu,
+</if>
+      <if test='guifanzhixing != null' >
+        guifanzhixing,
+</if>
+      <if test='koufajinge != null' >
+        koufajinge,
+</if>
+      <if test='time != null' >
+        time,
+</if>
+      <if test='bumen != null' >
+        bumen,
+</if>
+
+ </trim>
+    <trim prefix='values (' suffix=')' suffixOverrides=',' >
+ <if test='id != null' >
+        #{id ,jdbcType=BIGINT},
+      </if>
+ <if test='zhiyuandaima != null' >
+        #{zhiyuandaima ,jdbcType=VARCHAR},
+      </if>
+ <if test='name != null' >
+        #{name ,jdbcType=VARCHAR},
+      </if>
+ <if test='gongwei != null' >
+        #{gongwei ,jdbcType=VARCHAR},
+      </if>
+ <if test='guocheng != null' >
+        #{guocheng ,jdbcType=DECIMAL},
+      </if>
+ <if test='neibutousu != null' >
+        #{neibutousu ,jdbcType=DECIMAL},
+      </if>
+ <if test='guifanzhixing != null' >
+        #{guifanzhixing ,jdbcType=DECIMAL},
+      </if>
+ <if test='koufajinge != null' >
+        #{koufajinge ,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        #{time ,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        #{bumen ,jdbcType=VARCHAR},
+      </if>
+</trim>
+  </insert>
+  <update id='update' parameterType='com.changshun.countsystem.pojo.TDianlankoufa' >
+    update `t_dianlankoufa`
+    <set >
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='zhiyuandaima != null' >
+        zhiyuandaima = #{zhiyuandaima,jdbcType=VARCHAR},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='gongwei != null' >
+        gongwei = #{gongwei,jdbcType=VARCHAR},
+      </if>
+ <if test='guocheng != null' >
+        guocheng = #{guocheng,jdbcType=DECIMAL},
+      </if>
+ <if test='neibutousu != null' >
+        neibutousu = #{neibutousu,jdbcType=DECIMAL},
+      </if>
+ <if test='guifanzhixing != null' >
+        guifanzhixing = #{guifanzhixing,jdbcType=DECIMAL},
+      </if>
+ <if test='koufajinge != null' >
+        koufajinge = #{koufajinge,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<delete id='deleteAll'>
+		DELETE FROM `t_dianlankoufa` WHERE id IN
+		<foreach collection='ids' item='id' open='(' separator=',' close=')'>
+			#{ id }
+		</foreach>
+	</delete>
+  <update id='updateAll'   parameterType='java.util.List'>
+   <foreach collection='T' item='t' index='index' open='' close='' separator=';'> 
+   update `t_dianlankoufa`
+
+ <set >
+
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='zhiyuandaima != null' >
+        zhiyuandaima = #{zhiyuandaima,jdbcType=VARCHAR},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='gongwei != null' >
+        gongwei = #{gongwei,jdbcType=VARCHAR},
+      </if>
+ <if test='guocheng != null' >
+        guocheng = #{guocheng,jdbcType=DECIMAL},
+      </if>
+ <if test='neibutousu != null' >
+        neibutousu = #{neibutousu,jdbcType=DECIMAL},
+      </if>
+ <if test='guifanzhixing != null' >
+        guifanzhixing = #{guifanzhixing,jdbcType=DECIMAL},
+      </if>
+ <if test='koufajinge != null' >
+        koufajinge = #{koufajinge,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+ </foreach> </update>
+</mapper>

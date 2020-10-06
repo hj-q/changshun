@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://121.196.15.202/changshun?serverTimezone=GMT
+    #url: jdbc:mysql://localhost:3306/countsys?serverTimezone=GMT
+    url: jdbc:mysql://8.129.18.200:3306/changshun?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    #username: root
+    password: '@_mysql_@'
+    #password: 123456
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.changshun.countsystem.pojo
+
+logging:
+  level:
+    com.changshun.countsystem.dao: debug
+server:
+  port: 8085
+
+#日志文件待定
+
+

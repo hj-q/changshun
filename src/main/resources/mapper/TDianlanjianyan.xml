@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<mapper namespace='com.changshun.countsystem.dao.TDianlanjianyanMapper' >
+  <resultMap id='BaseResultMap' type='com.changshun.countsystem.pojo.TDianlanjianyan' >
+    <result column='id' property='id' jdbcType='BIGINT' />
+    <result column='name' property='name' jdbcType='VARCHAR' />
+    <result column='workerid' property='workerid' jdbcType='VARCHAR' />
+    <result column='chuqin' property='chuqin' jdbcType='DECIMAL' />
+    <result column='gonglinggongzi' property='gonglinggongzi' jdbcType='DECIMAL' />
+    <result column='jianglijin' property='jianglijin' jdbcType='DECIMAL' />
+    <result column='fakuanjin' property='fakuanjin' jdbcType='DECIMAL' />
+    <result column='yebanbutied' property='yebanbutied' jdbcType='DECIMAL' />
+    <result column='quanqin' property='quanqin' jdbcType='DECIMAL' />
+    <result column='gaowenfei' property='gaowenfei' jdbcType='DECIMAL' />
+    <result column='gongzi' property='gongzi' jdbcType='DECIMAL' />
+    <result column='zongjinge' property='zongjinge' jdbcType='DECIMAL' />
+    <result column='pinjun' property='pinjun' jdbcType='DECIMAL' />
+    <result column='beizhu' property='beizhu' jdbcType='VARCHAR' />
+    <result column='time' property='time' jdbcType='TIMESTAMP' />
+    <result column='bumen' property='bumen' jdbcType='VARCHAR' />
+</resultMap>
+<sql id='sf'>
+    <where>
+      <if test='id != null'> and id= #{id}</if>
+      <if test='name != null'> and name= #{name}</if>
+      <if test='workerid != null'> and workerid= #{workerid}</if>
+      <if test='chuqin != null'> and chuqin= #{chuqin}</if>
+      <if test='gonglinggongzi != null'> and gonglinggongzi= #{gonglinggongzi}</if>
+      <if test='jianglijin != null'> and jianglijin= #{jianglijin}</if>
+      <if test='fakuanjin != null'> and fakuanjin= #{fakuanjin}</if>
+      <if test='yebanbutied != null'> and yebanbutied= #{yebanbutied}</if>
+      <if test='quanqin != null'> and quanqin= #{quanqin}</if>
+      <if test='gaowenfei != null'> and gaowenfei= #{gaowenfei}</if>
+      <if test='gongzi != null'> and gongzi= #{gongzi}</if>
+      <if test='zongjinge != null'> and zongjinge= #{zongjinge}</if>
+      <if test='pinjun != null'> and pinjun= #{pinjun}</if>
+      <if test='beizhu != null'> and beizhu= #{beizhu}</if>
+      <if test='time != null'> and time= #{time}</if>
+      <if test='bumen != null'> and bumen= #{bumen}</if>
+<if test='create_time_begin != null and create_time_end != null' > and `time` BETWEEN #{create_time_begin} AND #{create_time_end}</if>
+
+</where>    </sql>
+
+<select id='getOne' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TDianlanjianyan' >
+    select *
+    from  `t_dianlanjianyan`
+        <include refid='sf' />
+  </select>
+<select id='getList' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TDianlanjianyan' >
+    select *
+    from `t_dianlanjianyan`
+    <include refid='sf' />
+  </select>
+<delete id='delete' parameterType='com.changshun.countsystem.pojo.TDianlanjianyan' >
+    delete from `t_dianlanjianyan`
+    <include refid='sf' />
+  </delete>
+<select id='getCount' parameterType='com.changshun.countsystem.pojo.TDianlanjianyan' resultType='int'>
+		select count(*) from `t_dianlanjianyan` <include refid='sf' />
+	</select>
+<select id='getLike' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TDianlanjianyan' >
+    select *
+    from `t_dianlanjianyan`<where>
+      <if test='id != null'> and id like concat('%', #{id},'%')</if>
+      <if test='name != null'> and name like concat('%', #{name},'%')</if>
+      <if test='workerid != null'> and workerid like concat('%', #{workerid},'%')</if>
+      <if test='chuqin != null'> and chuqin like concat('%', #{chuqin},'%')</if>
+      <if test='gonglinggongzi != null'> and gonglinggongzi like concat('%', #{gonglinggongzi},'%')</if>
+      <if test='jianglijin != null'> and jianglijin like concat('%', #{jianglijin},'%')</if>
+      <if test='fakuanjin != null'> and fakuanjin like concat('%', #{fakuanjin},'%')</if>
+      <if test='yebanbutied != null'> and yebanbutied like concat('%', #{yebanbutied},'%')</if>
+      <if test='quanqin != null'> and quanqin like concat('%', #{quanqin},'%')</if>
+      <if test='gaowenfei != null'> and gaowenfei like concat('%', #{gaowenfei},'%')</if>
+      <if test='gongzi != null'> and gongzi like concat('%', #{gongzi},'%')</if>
+      <if test='zongjinge != null'> and zongjinge like concat('%', #{zongjinge},'%')</if>
+      <if test='pinjun != null'> and pinjun like concat('%', #{pinjun},'%')</if>
+      <if test='beizhu != null'> and beizhu like concat('%', #{beizhu},'%')</if>
+      <if test='time != null'> and time like concat('%', #{time},'%')</if>
+      <if test='bumen != null'> and bumen like concat('%', #{bumen},'%')</if>
+  </where></select>
+
+<insert id='insert' parameterType='com.changshun.countsystem.pojo.TDianlanjianyan' >
+    insert into `t_dianlanjianyan`
+    <trim prefix='(' suffix=')' suffixOverrides=',' >
+      <if test='id != null' >
+        id,
+</if>
+      <if test='name != null' >
+        name,
+</if>
+      <if test='workerid != null' >
+        workerid,
+</if>
+      <if test='chuqin != null' >
+        chuqin,
+</if>
+      <if test='gonglinggongzi != null' >
+        gonglinggongzi,
+</if>
+      <if test='jianglijin != null' >
+        jianglijin,
+</if>
+      <if test='fakuanjin != null' >
+        fakuanjin,
+</if>
+      <if test='yebanbutied != null' >
+        yebanbutied,
+</if>
+      <if test='quanqin != null' >
+        quanqin,
+</if>
+      <if test='gaowenfei != null' >
+        gaowenfei,
+</if>
+      <if test='gongzi != null' >
+        gongzi,
+</if>
+      <if test='zongjinge != null' >
+        zongjinge,
+</if>
+      <if test='pinjun != null' >
+        pinjun,
+</if>
+      <if test='beizhu != null' >
+        beizhu,
+</if>
+      <if test='time != null' >
+        time,
+</if>
+      <if test='bumen != null' >
+        bumen,
+</if>
+
+ </trim>
+    <trim prefix='values (' suffix=')' suffixOverrides=',' >
+ <if test='id != null' >
+        #{id ,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        #{name ,jdbcType=VARCHAR},
+      </if>
+ <if test='workerid != null' >
+        #{workerid ,jdbcType=VARCHAR},
+      </if>
+ <if test='chuqin != null' >
+        #{chuqin ,jdbcType=DECIMAL},
+      </if>
+ <if test='gonglinggongzi != null' >
+        #{gonglinggongzi ,jdbcType=DECIMAL},
+      </if>
+ <if test='jianglijin != null' >
+        #{jianglijin ,jdbcType=DECIMAL},
+      </if>
+ <if test='fakuanjin != null' >
+        #{fakuanjin ,jdbcType=DECIMAL},
+      </if>
+ <if test='yebanbutied != null' >
+        #{yebanbutied ,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqin != null' >
+        #{quanqin ,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowenfei != null' >
+        #{gaowenfei ,jdbcType=DECIMAL},
+      </if>
+ <if test='gongzi != null' >
+        #{gongzi ,jdbcType=DECIMAL},
+      </if>
+ <if test='zongjinge != null' >
+        #{zongjinge ,jdbcType=DECIMAL},
+      </if>
+ <if test='pinjun != null' >
+        #{pinjun ,jdbcType=DECIMAL},
+      </if>
+ <if test='beizhu != null' >
+        #{beizhu ,jdbcType=VARCHAR},
+      </if>
+ <if test='time != null' >
+        #{time ,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        #{bumen ,jdbcType=VARCHAR},
+      </if>
+</trim>
+  </insert>
+  <update id='update' parameterType='com.changshun.countsystem.pojo.TDianlanjianyan' >
+    update `t_dianlanjianyan`
+    <set >
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='workerid != null' >
+        workerid = #{workerid,jdbcType=VARCHAR},
+      </if>
+ <if test='chuqin != null' >
+        chuqin = #{chuqin,jdbcType=DECIMAL},
+      </if>
+ <if test='gonglinggongzi != null' >
+        gonglinggongzi = #{gonglinggongzi,jdbcType=DECIMAL},
+      </if>
+ <if test='jianglijin != null' >
+        jianglijin = #{jianglijin,jdbcType=DECIMAL},
+      </if>
+ <if test='fakuanjin != null' >
+        fakuanjin = #{fakuanjin,jdbcType=DECIMAL},
+      </if>
+ <if test='yebanbutied != null' >
+        yebanbutied = #{yebanbutied,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqin != null' >
+        quanqin = #{quanqin,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowenfei != null' >
+        gaowenfei = #{gaowenfei,jdbcType=DECIMAL},
+      </if>
+ <if test='gongzi != null' >
+        gongzi = #{gongzi,jdbcType=DECIMAL},
+      </if>
+ <if test='zongjinge != null' >
+        zongjinge = #{zongjinge,jdbcType=DECIMAL},
+      </if>
+ <if test='pinjun != null' >
+        pinjun = #{pinjun,jdbcType=DECIMAL},
+      </if>
+ <if test='beizhu != null' >
+        beizhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<delete id='deleteAll'>
+		DELETE FROM `t_dianlanjianyan` WHERE id IN
+		<foreach collection='ids' item='id' open='(' separator=',' close=')'>
+			#{ id }
+		</foreach>
+	</delete>
+  <update id='updateAll'   parameterType='java.util.List'>
+   <foreach collection='T' item='t' index='index' open='' close='' separator=';'> 
+   update `t_dianlanjianyan`
+
+ <set >
+
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='workerid != null' >
+        workerid = #{workerid,jdbcType=VARCHAR},
+      </if>
+ <if test='chuqin != null' >
+        chuqin = #{chuqin,jdbcType=DECIMAL},
+      </if>
+ <if test='gonglinggongzi != null' >
+        gonglinggongzi = #{gonglinggongzi,jdbcType=DECIMAL},
+      </if>
+ <if test='jianglijin != null' >
+        jianglijin = #{jianglijin,jdbcType=DECIMAL},
+      </if>
+ <if test='fakuanjin != null' >
+        fakuanjin = #{fakuanjin,jdbcType=DECIMAL},
+      </if>
+ <if test='yebanbutied != null' >
+        yebanbutied = #{yebanbutied,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqin != null' >
+        quanqin = #{quanqin,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowenfei != null' >
+        gaowenfei = #{gaowenfei,jdbcType=DECIMAL},
+      </if>
+ <if test='gongzi != null' >
+        gongzi = #{gongzi,jdbcType=DECIMAL},
+      </if>
+ <if test='zongjinge != null' >
+        zongjinge = #{zongjinge,jdbcType=DECIMAL},
+      </if>
+ <if test='pinjun != null' >
+        pinjun = #{pinjun,jdbcType=DECIMAL},
+      </if>
+ <if test='beizhu != null' >
+        beizhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+ </foreach> </update>
+</mapper>

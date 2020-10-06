@@ -1,0 +1,394 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<mapper namespace='com.changshun.countsystem.dao.TCangkumanagerMapper' >
+  <resultMap id='BaseResultMap' type='com.changshun.countsystem.pojo.TCangkumanager' >
+    <result column='id' property='id' jdbcType='BIGINT' />
+    <result column='name' property='name' jdbcType='VARCHAR' />
+    <result column='workerid' property='workerid' jdbcType='VARCHAR' />
+    <result column='workertime' property='workertime' jdbcType='DECIMAL' />
+    <result column='standardtime' property='standardtime' jdbcType='DECIMAL' />
+    <result column='guding' property='guding' jdbcType='DECIMAL' />
+    <result column='gangwei' property='gangwei' jdbcType='DECIMAL' />
+    <result column='jixiao' property='jixiao' jdbcType='DECIMAL' />
+    <result column='quanqin' property='quanqin' jdbcType='DECIMAL' />
+    <result column='education' property='education' jdbcType='DECIMAL' />
+    <result column='xiaojione' property='xiaojione' jdbcType='DECIMAL' />
+    <result column='buzhu' property='buzhu' jdbcType='DECIMAL' />
+    <result column='xiaojitwo' property='xiaojitwo' jdbcType='DECIMAL' />
+    <result column='jiaban' property='jiaban' jdbcType='DECIMAL' />
+    <result column='unitprice' property='unitprice' jdbcType='DECIMAL' />
+    <result column='jiabanfei' property='jiabanfei' jdbcType='DECIMAL' />
+    <result column='gongling' property='gongling' jdbcType='DECIMAL' />
+    <result column='gonglingmoney' property='gonglingmoney' jdbcType='DECIMAL' />
+    <result column='gaowenfei' property='gaowenfei' jdbcType='DECIMAL' />
+    <result column='total' property='total' jdbcType='DECIMAL' />
+    <result column='time' property='time' jdbcType='TIMESTAMP' />
+    <result column='bumen' property='bumen' jdbcType='VARCHAR' />
+</resultMap>
+<sql id='sf'>
+    <where>
+      <if test='id != null'> and id= #{id}</if>
+      <if test='name != null'> and name= #{name}</if>
+      <if test='workerid != null'> and workerid= #{workerid}</if>
+      <if test='workertime != null'> and workertime= #{workertime}</if>
+      <if test='standardtime != null'> and standardtime= #{standardtime}</if>
+      <if test='guding != null'> and guding= #{guding}</if>
+      <if test='gangwei != null'> and gangwei= #{gangwei}</if>
+      <if test='jixiao != null'> and jixiao= #{jixiao}</if>
+      <if test='quanqin != null'> and quanqin= #{quanqin}</if>
+      <if test='education != null'> and education= #{education}</if>
+      <if test='xiaojione != null'> and xiaojione= #{xiaojione}</if>
+      <if test='buzhu != null'> and buzhu= #{buzhu}</if>
+      <if test='xiaojitwo != null'> and xiaojitwo= #{xiaojitwo}</if>
+      <if test='jiaban != null'> and jiaban= #{jiaban}</if>
+      <if test='unitprice != null'> and unitprice= #{unitprice}</if>
+      <if test='jiabanfei != null'> and jiabanfei= #{jiabanfei}</if>
+      <if test='gongling != null'> and gongling= #{gongling}</if>
+      <if test='gonglingmoney != null'> and gonglingmoney= #{gonglingmoney}</if>
+      <if test='gaowenfei != null'> and gaowenfei= #{gaowenfei}</if>
+      <if test='total != null'> and total= #{total}</if>
+      <if test='time != null'> and time= #{time}</if>
+      <if test='bumen != null'> and bumen= #{bumen}</if>
+<if test='create_time_begin != null and create_time_end != null' > and `time` BETWEEN #{create_time_begin} AND #{create_time_end}</if>
+
+</where>    </sql>
+
+<select id='getOne' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TCangkumanager' >
+    select *
+    from  `t_cangkumanager`
+        <include refid='sf' />
+  </select>
+<select id='getList' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TCangkumanager' >
+    select *
+    from `t_cangkumanager`
+    <include refid='sf' />
+  </select>
+<delete id='delete' parameterType='com.changshun.countsystem.pojo.TCangkumanager' >
+    delete from `t_cangkumanager`
+    <include refid='sf' />
+  </delete>
+<select id='getCount' parameterType='com.changshun.countsystem.pojo.TCangkumanager' resultType='int'>
+		select count(*) from `t_cangkumanager` <include refid='sf' />
+	</select>
+<select id='getLike' resultMap='BaseResultMap' parameterType='com.changshun.countsystem.pojo.TCangkumanager' >
+    select *
+    from `t_cangkumanager`<where>
+      <if test='id != null'> and id like concat('%', #{id},'%')</if>
+      <if test='name != null'> and name like concat('%', #{name},'%')</if>
+      <if test='workerid != null'> and workerid like concat('%', #{workerid},'%')</if>
+      <if test='workertime != null'> and workertime like concat('%', #{workertime},'%')</if>
+      <if test='standardtime != null'> and standardtime like concat('%', #{standardtime},'%')</if>
+      <if test='guding != null'> and guding like concat('%', #{guding},'%')</if>
+      <if test='gangwei != null'> and gangwei like concat('%', #{gangwei},'%')</if>
+      <if test='jixiao != null'> and jixiao like concat('%', #{jixiao},'%')</if>
+      <if test='quanqin != null'> and quanqin like concat('%', #{quanqin},'%')</if>
+      <if test='education != null'> and education like concat('%', #{education},'%')</if>
+      <if test='xiaojione != null'> and xiaojione like concat('%', #{xiaojione},'%')</if>
+      <if test='buzhu != null'> and buzhu like concat('%', #{buzhu},'%')</if>
+      <if test='xiaojitwo != null'> and xiaojitwo like concat('%', #{xiaojitwo},'%')</if>
+      <if test='jiaban != null'> and jiaban like concat('%', #{jiaban},'%')</if>
+      <if test='unitprice != null'> and unitprice like concat('%', #{unitprice},'%')</if>
+      <if test='jiabanfei != null'> and jiabanfei like concat('%', #{jiabanfei},'%')</if>
+      <if test='gongling != null'> and gongling like concat('%', #{gongling},'%')</if>
+      <if test='gonglingmoney != null'> and gonglingmoney like concat('%', #{gonglingmoney},'%')</if>
+      <if test='gaowenfei != null'> and gaowenfei like concat('%', #{gaowenfei},'%')</if>
+      <if test='total != null'> and total like concat('%', #{total},'%')</if>
+      <if test='time != null'> and time like concat('%', #{time},'%')</if>
+      <if test='bumen != null'> and bumen like concat('%', #{bumen},'%')</if>
+  </where></select>
+
+<insert id='insert' parameterType='com.changshun.countsystem.pojo.TCangkumanager' >
+    insert into `t_cangkumanager`
+    <trim prefix='(' suffix=')' suffixOverrides=',' >
+      <if test='id != null' >
+        id,
+</if>
+      <if test='name != null' >
+        name,
+</if>
+      <if test='workerid != null' >
+        workerid,
+</if>
+      <if test='workertime != null' >
+        workertime,
+</if>
+      <if test='standardtime != null' >
+        standardtime,
+</if>
+      <if test='guding != null' >
+        guding,
+</if>
+      <if test='gangwei != null' >
+        gangwei,
+</if>
+      <if test='jixiao != null' >
+        jixiao,
+</if>
+      <if test='quanqin != null' >
+        quanqin,
+</if>
+      <if test='education != null' >
+        education,
+</if>
+      <if test='xiaojione != null' >
+        xiaojione,
+</if>
+      <if test='buzhu != null' >
+        buzhu,
+</if>
+      <if test='xiaojitwo != null' >
+        xiaojitwo,
+</if>
+      <if test='jiaban != null' >
+        jiaban,
+</if>
+      <if test='unitprice != null' >
+        unitprice,
+</if>
+      <if test='jiabanfei != null' >
+        jiabanfei,
+</if>
+      <if test='gongling != null' >
+        gongling,
+</if>
+      <if test='gonglingmoney != null' >
+        gonglingmoney,
+</if>
+      <if test='gaowenfei != null' >
+        gaowenfei,
+</if>
+      <if test='total != null' >
+        total,
+</if>
+      <if test='time != null' >
+        time,
+</if>
+      <if test='bumen != null' >
+        bumen,
+</if>
+
+ </trim>
+    <trim prefix='values (' suffix=')' suffixOverrides=',' >
+ <if test='id != null' >
+        #{id ,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        #{name ,jdbcType=VARCHAR},
+      </if>
+ <if test='workerid != null' >
+        #{workerid ,jdbcType=VARCHAR},
+      </if>
+ <if test='workertime != null' >
+        #{workertime ,jdbcType=DECIMAL},
+      </if>
+ <if test='standardtime != null' >
+        #{standardtime ,jdbcType=DECIMAL},
+      </if>
+ <if test='guding != null' >
+        #{guding ,jdbcType=DECIMAL},
+      </if>
+ <if test='gangwei != null' >
+        #{gangwei ,jdbcType=DECIMAL},
+      </if>
+ <if test='jixiao != null' >
+        #{jixiao ,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqin != null' >
+        #{quanqin ,jdbcType=DECIMAL},
+      </if>
+ <if test='education != null' >
+        #{education ,jdbcType=DECIMAL},
+      </if>
+ <if test='xiaojione != null' >
+        #{xiaojione ,jdbcType=DECIMAL},
+      </if>
+ <if test='buzhu != null' >
+        #{buzhu ,jdbcType=DECIMAL},
+      </if>
+ <if test='xiaojitwo != null' >
+        #{xiaojitwo ,jdbcType=DECIMAL},
+      </if>
+ <if test='jiaban != null' >
+        #{jiaban ,jdbcType=DECIMAL},
+      </if>
+ <if test='unitprice != null' >
+        #{unitprice ,jdbcType=DECIMAL},
+      </if>
+ <if test='jiabanfei != null' >
+        #{jiabanfei ,jdbcType=DECIMAL},
+      </if>
+ <if test='gongling != null' >
+        #{gongling ,jdbcType=DECIMAL},
+      </if>
+ <if test='gonglingmoney != null' >
+        #{gonglingmoney ,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowenfei != null' >
+        #{gaowenfei ,jdbcType=DECIMAL},
+      </if>
+ <if test='total != null' >
+        #{total ,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        #{time ,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        #{bumen ,jdbcType=VARCHAR},
+      </if>
+</trim>
+  </insert>
+  <update id='update' parameterType='com.changshun.countsystem.pojo.TCangkumanager' >
+    update `t_cangkumanager`
+    <set >
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='workerid != null' >
+        workerid = #{workerid,jdbcType=VARCHAR},
+      </if>
+ <if test='workertime != null' >
+        workertime = #{workertime,jdbcType=DECIMAL},
+      </if>
+ <if test='standardtime != null' >
+        standardtime = #{standardtime,jdbcType=DECIMAL},
+      </if>
+ <if test='guding != null' >
+        guding = #{guding,jdbcType=DECIMAL},
+      </if>
+ <if test='gangwei != null' >
+        gangwei = #{gangwei,jdbcType=DECIMAL},
+      </if>
+ <if test='jixiao != null' >
+        jixiao = #{jixiao,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqin != null' >
+        quanqin = #{quanqin,jdbcType=DECIMAL},
+      </if>
+ <if test='education != null' >
+        education = #{education,jdbcType=DECIMAL},
+      </if>
+ <if test='xiaojione != null' >
+        xiaojione = #{xiaojione,jdbcType=DECIMAL},
+      </if>
+ <if test='buzhu != null' >
+        buzhu = #{buzhu,jdbcType=DECIMAL},
+      </if>
+ <if test='xiaojitwo != null' >
+        xiaojitwo = #{xiaojitwo,jdbcType=DECIMAL},
+      </if>
+ <if test='jiaban != null' >
+        jiaban = #{jiaban,jdbcType=DECIMAL},
+      </if>
+ <if test='unitprice != null' >
+        unitprice = #{unitprice,jdbcType=DECIMAL},
+      </if>
+ <if test='jiabanfei != null' >
+        jiabanfei = #{jiabanfei,jdbcType=DECIMAL},
+      </if>
+ <if test='gongling != null' >
+        gongling = #{gongling,jdbcType=DECIMAL},
+      </if>
+ <if test='gonglingmoney != null' >
+        gonglingmoney = #{gonglingmoney,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowenfei != null' >
+        gaowenfei = #{gaowenfei,jdbcType=DECIMAL},
+      </if>
+ <if test='total != null' >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<delete id='deleteAll'>
+		DELETE FROM `t_cangkumanager` WHERE id IN
+		<foreach collection='ids' item='id' open='(' separator=',' close=')'>
+			#{ id }
+		</foreach>
+	</delete>
+  <update id='updateAll'   parameterType='java.util.List'>
+   <foreach collection='T' item='t' index='index' open='' close='' separator=';'> 
+   update `t_cangkumanager`
+
+ <set >
+
+ <if test='id != null' >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+ <if test='name != null' >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+ <if test='workerid != null' >
+        workerid = #{workerid,jdbcType=VARCHAR},
+      </if>
+ <if test='workertime != null' >
+        workertime = #{workertime,jdbcType=DECIMAL},
+      </if>
+ <if test='standardtime != null' >
+        standardtime = #{standardtime,jdbcType=DECIMAL},
+      </if>
+ <if test='guding != null' >
+        guding = #{guding,jdbcType=DECIMAL},
+      </if>
+ <if test='gangwei != null' >
+        gangwei = #{gangwei,jdbcType=DECIMAL},
+      </if>
+ <if test='jixiao != null' >
+        jixiao = #{jixiao,jdbcType=DECIMAL},
+      </if>
+ <if test='quanqin != null' >
+        quanqin = #{quanqin,jdbcType=DECIMAL},
+      </if>
+ <if test='education != null' >
+        education = #{education,jdbcType=DECIMAL},
+      </if>
+ <if test='xiaojione != null' >
+        xiaojione = #{xiaojione,jdbcType=DECIMAL},
+      </if>
+ <if test='buzhu != null' >
+        buzhu = #{buzhu,jdbcType=DECIMAL},
+      </if>
+ <if test='xiaojitwo != null' >
+        xiaojitwo = #{xiaojitwo,jdbcType=DECIMAL},
+      </if>
+ <if test='jiaban != null' >
+        jiaban = #{jiaban,jdbcType=DECIMAL},
+      </if>
+ <if test='unitprice != null' >
+        unitprice = #{unitprice,jdbcType=DECIMAL},
+      </if>
+ <if test='jiabanfei != null' >
+        jiabanfei = #{jiabanfei,jdbcType=DECIMAL},
+      </if>
+ <if test='gongling != null' >
+        gongling = #{gongling,jdbcType=DECIMAL},
+      </if>
+ <if test='gonglingmoney != null' >
+        gonglingmoney = #{gonglingmoney,jdbcType=DECIMAL},
+      </if>
+ <if test='gaowenfei != null' >
+        gaowenfei = #{gaowenfei,jdbcType=DECIMAL},
+      </if>
+ <if test='total != null' >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+ <if test='time != null' >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+ <if test='bumen != null' >
+        bumen = #{bumen,jdbcType=VARCHAR},
+      </if>
+ </set>
+    where id = #{id,jdbcType=INTEGER}
+ </foreach> </update>
+</mapper>
