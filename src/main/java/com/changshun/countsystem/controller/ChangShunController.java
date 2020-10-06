@@ -19,7 +19,7 @@ import java.util.List;
 //@RestController
 @CrossOrigin
 @RestController
-@RequestMapping("/chan")
+@RequestMapping("/chanshunnn")
 public class ChangShunController {
 
     @Autowired
